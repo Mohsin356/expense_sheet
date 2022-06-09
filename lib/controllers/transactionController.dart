@@ -8,7 +8,13 @@ class TransactionController extends GetxController{
   onInit(){
     super.onInit();
     fetchListItems();
+
   }
+  addItems(String txTitle, double txAmount){
+    final newTx = Transaction(id: DateTime.now().toString(),title: txTitle,amount: txAmount,date: DateTime.now());
+    transactionsList.add(newTx);
+  }
+
   void fetchListItems(){
     var response =<Transaction>[
       Transaction(id: "t1",title: "Lunch",amount: 200, date: DateTime.now()),
