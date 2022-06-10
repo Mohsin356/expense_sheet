@@ -8,12 +8,23 @@ import 'package:expense_sheet/controllers/transactionController.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final transactions = Get.put(TransactionController());
+  void startNewTransaction(BuildContext ctx){
+    showModalBottomSheet(context: ctx, builder: (_){
+      return NewTransaction();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Center(child: Text('Expense Planner')),
-        backgroundColor: UiColors.appBarClr,),
+        appBar: AppBar(title: const Text('Expense Planner'),
+        backgroundColor: UiColors.appBarClr,
+        actions: [
+          IconButton(onPressed: (){
+            startNewTransaction(context);
+          }, icon: const Icon(Icons.add))
+        ],),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -21,10 +32,14 @@ class HomePage extends StatelessWidget {
                const Card(
                 child: Text("Chart"),
               ),
-               NewTransaction(),
                TransactionList(transaction: transactions.transactionsList),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: UiColors.floatingBtnClr,
+          child: const Icon(Icons.add),
+          onPressed: (){startNewTransaction(context);},
         ),
       ),
     );

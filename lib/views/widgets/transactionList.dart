@@ -8,7 +8,15 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transaction;
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
+    return Obx(() => transaction.isEmpty ? Column(
+      children: [
+        const Text("No transactions added yet",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+        const SizedBox(height: 20,),
+        SizedBox(
+            height: 200,
+            child: Image.asset('assets/images/waiting.png',fit: BoxFit.cover,))
+      ],
+    ):Column(
       children:
       transaction.map((tx){
         return Card(
@@ -21,8 +29,8 @@ class TransactionList extends StatelessWidget {
                         border: Border.all(color: UiColors.priceBorderClr,width: 2)
                     ),
                     padding: const EdgeInsets.all(8),
-                    child: Text("${tx.amount.toString()} Rs",
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                    child: Text("${tx.amount!.toStringAsFixed(2)} Rs",
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
                             color: UiColors.priceTxtXlr))
                 ),
                 Column(
@@ -38,6 +46,7 @@ class TransactionList extends StatelessWidget {
             )
         );
       }).toList(),
-    ));
+    )
+    );
   }
 }

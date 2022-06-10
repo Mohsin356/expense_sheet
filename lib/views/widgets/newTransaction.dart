@@ -4,11 +4,32 @@ import 'package:expense_sheet/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:expense_sheet/controllers/transactionController.dart';
 
-class NewTransaction extends StatelessWidget {
-  NewTransaction({Key? key}) : super(key: key);
+class NewTransaction extends StatefulWidget {
+  const NewTransaction({Key? key}) : super(key: key);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
   final transactionAdd= Get.find<TransactionController>();
+
   final titleController = TextEditingController();
+
   final amountController = TextEditingController();
+
+  void submitData(){
+    final enteredTitle= titleController.text;
+    final enteredAmount =double.parse(amountController.text);
+    if(enteredTitle.isEmpty || enteredAmount<=0){
+      return;
+    }
+    transactionAdd.addItems(enteredTitle,enteredAmount);
+    titleController.clear();
+    amountController.clear();
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,13 +42,12 @@ class NewTransaction extends StatelessWidget {
             TextFields(controller: titleController,lblText: 'Title', lblTxtClr: UiColors.lblTxtClr,
                 borderColor: UiColors.lblBorderClr, cursorColor: UiColors.cursorClr),
             TextFields(controller:amountController,lblText: 'Amount', lblTxtClr: UiColors.lblTxtClr,
-                borderColor: UiColors.lblBorderClr, cursorColor: UiColors.cursorClr),
+                borderColor: UiColors.lblBorderClr, cursorColor: UiColors.cursorClr,
+              inputType: TextInputType.number, dataSubmit: (_)=>submitData(),),
             TextButton(
                 onPressed: ()
                 {
-                  transactionAdd.addItems(titleController.text, double.parse(amountController.text));
-                  titleController.clear();
-                  amountController.clear();
+                  submitData();
                 },
                 child: const Text("Add Transaction",style: TextStyle(color: UiColors.txtBtnClr),) )
           ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 class UiColors{
   static const appBarClr = Colors.purple;
+  static const floatingBtnClr = Colors.purple;
   static const lblTxtClr = Colors.purple;
   static const lblBorderClr = Colors.purple;
   static const cursorClr = Colors.purple;
