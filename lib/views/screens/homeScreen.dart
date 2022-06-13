@@ -1,3 +1,4 @@
+import 'package:expense_sheet/views/widgets/chart.dart';
 import 'package:expense_sheet/views/widgets/newTransaction.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_sheet/utils/colors.dart';
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   final transactions = Get.put(TransactionController());
   void startNewTransaction(BuildContext ctx){
     showModalBottomSheet(context: ctx, builder: (_){
-      return NewTransaction();
+      return const NewTransaction();
     });
   }
 
@@ -29,10 +30,8 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children:  [
-               const Card(
-                child: Text("Chart"),
-              ),
-               TransactionList(transaction: transactions.transactionsList),
+                Chart(),
+               TransactionList(),
             ],
           ),
         ),

@@ -44,12 +44,23 @@ class _NewTransactionState extends State<NewTransaction> {
             TextFields(controller:amountController,lblText: 'Amount', lblTxtClr: UiColors.lblTxtClr,
                 borderColor: UiColors.lblBorderClr, cursorColor: UiColors.cursorClr,
               inputType: TextInputType.number, dataSubmit: (_)=>submitData(),),
-            TextButton(
-                onPressed: ()
-                {
-                  submitData();
-                },
-                child: const Text("Add Transaction",style: TextStyle(color: UiColors.txtBtnClr),) )
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  const Text("No data chosen!"),
+                  TextButton(onPressed: (){},
+                      child: const Text("Choose Date",style: TextStyle(color: UiColors.txtBtnClr,fontWeight: FontWeight.bold),)),
+                ],
+              ),
+            ),
+            ElevatedButton(onPressed: ()
+            {
+              submitData();
+            },
+            style: ElevatedButton.styleFrom(primary: UiColors.btnClr),
+                child: const Text("Add Transaction",)
+            )
           ],
         ),
       ),
