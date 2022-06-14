@@ -10,7 +10,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => transactionList.transactionsList.isEmpty ? Column(
       children: [
-        const Text("No transactions added yet",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+        const Text("No Transactions Added Yet",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
         const SizedBox(height: 20,),
         SizedBox(
             height: 200,
@@ -18,35 +18,32 @@ class TransactionList extends StatelessWidget {
       ],
     )
         :Column(
-      children:
-      transactionList.transactionsList.map((tx){
-        return Card(
-            elevation: 5,
-            child: Row(
-              children: [
-                Container(
-                    margin: const EdgeInsets.symmetric(vertical:10,horizontal: 15),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: UiColors.priceBorderClr,width: 2)
-                    ),
-                    padding: const EdgeInsets.all(8),
-                    child: Text("Rs ${tx.amount!.toStringAsFixed(2)}",
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
-                            color: UiColors.priceTxtXlr))
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(tx.title.toString(),
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold,)),
-                    Text(DateFormat.yMMMd().format(tx.date!),
-                        style: const TextStyle(color: UiColors.dateTxtXlr)),
-                  ],
-                )
-              ],
-            )
-        );
-      }).toList(),
+      children: [
+        const Text("Expense List",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
+        const SizedBox(height: 15,),
+        ListView.separated(
+            separatorBuilder: (BuildContext context, int index) => const Divider(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: transactionList.transactionsList.length,
+            itemBuilder: (context,index){
+              return ListTile(
+                  leading: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(transactionList.transactionsList[index].title.toString(),
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,)),
+                      const SizedBox(height: 8,),
+                      Text(DateFormat.yMMMd().format(transactionList.transactionsList[index].date!),
+                          style: const TextStyle(color: UiColors.dateTxtXlr)),
+                    ],
+                  ),
+                trailing:  Text("Rs ${transactionList.transactionsList[index].amount!.toStringAsFixed(2)}",
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
+                        color: UiColors.priceTxtXlr)),
+              );
+            })
+      ],
     )
     );
   }

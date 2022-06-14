@@ -1,3 +1,5 @@
+import 'package:date_field/date_field.dart';
+import 'package:expense_sheet/views/widgets/datePicker.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_sheet/views/widgets/textField.dart';
 import 'package:expense_sheet/utils/colors.dart';
@@ -14,22 +16,6 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final transactionAdd= Get.find<TransactionController>();
 
-  final titleController = TextEditingController();
-
-  final amountController = TextEditingController();
-
-  void submitData(){
-    final enteredTitle= titleController.text;
-    final enteredAmount =double.parse(amountController.text);
-    if(enteredTitle.isEmpty || enteredAmount<=0){
-      return;
-    }
-    transactionAdd.addItems(enteredTitle,enteredAmount);
-    titleController.clear();
-    amountController.clear();
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -39,24 +25,46 @@ class _NewTransactionState extends State<NewTransaction> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            TextFields(controller: titleController,lblText: 'Title', lblTxtClr: UiColors.lblTxtClr,
+            TextFields(controller: transactionAdd.titleController,lblText: 'Title', lblTxtClr: UiColors.lblTxtClr,
                 borderColor: UiColors.lblBorderClr, cursorColor: UiColors.cursorClr),
-            TextFields(controller:amountController,lblText: 'Amount', lblTxtClr: UiColors.lblTxtClr,
+            TextFields(controller:transactionAdd.amountController,lblText: 'Amount', lblTxtClr: UiColors.lblTxtClr,
                 borderColor: UiColors.lblBorderClr, cursorColor: UiColors.cursorClr,
-              inputType: TextInputType.number, dataSubmit: (_)=>submitData(),),
+              inputType: TextInputType.number, dataSubmit: (_){
+                return {transactionAdd.submitData(),
+                Navigator.of(context).pop()
+                };
+              },),
             SizedBox(
               height: 70,
               child: Row(
                 children: [
-                  const Text("No data chosen!"),
-                  TextButton(onPressed: (){},
-                      child: const Text("Choose Date",style: TextStyle(color: UiColors.txtBtnClr,fontWeight: FontWeight.bold),)),
-                ],
+                  Text("No Date Choosen"),
+                  Expanded(
+                    child: DateFormFieldContainer(
+                      isRounded: false,
+                      isTrue: true,
+                      // enable: _.paymentvalue == 'Cheque' ? true : false,
+                      text: '',
+                      mode: DateTimeFieldPickerMode.date,
+                      dateFormatTrue: true,
+                      initialValue: DateTime.now(),
+                      onDateSelected: (value) {
+                        transactionAdd.date = value;
+                        transactionAdd.update();
+                      },
+                    ),
+                  ),
+                //   TextButton(onPressed: (){
+                //     // transactionAdd.presentDatePicker();
+                //
+                //   },
+                //       child: const Text("Choose Date",style: TextStyle(color: UiColors.txtBtnClr,fontWeight: FontWeight.bold),)),
+                //
+              ],
               ),
             ),
-            ElevatedButton(onPressed: ()
-            {
-              submitData();
+            ElevatedButton(onPressed: (){
+              transactionAdd.submitData();
             },
             style: ElevatedButton.styleFrom(primary: UiColors.btnClr),
                 child: const Text("Add Transaction",)

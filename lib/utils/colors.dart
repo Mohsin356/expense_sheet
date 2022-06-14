@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 class UiColors{
+  static const primarySwatchClr = Colors.purple;
   static const appBarClr = Colors.purple;
   static const floatingBtnClr = Colors.purple;
   static const lblTxtClr = Colors.purple;
+  static const headingTxtClr = Colors.purple;
   static const lblBorderClr = Colors.purple;
+  static const circleAvatarBorder = Colors.purple;
   static const btnClr = Colors.purple;
   static const cursorClr = Colors.purple;
   static const txtBtnClr = Colors.purple;

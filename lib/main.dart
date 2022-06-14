@@ -1,6 +1,7 @@
 import 'package:expense_sheet/views/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:expense_sheet/utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: UiColors.primarySwatchClr,
         ),
         home:   HomePage(),
       ),

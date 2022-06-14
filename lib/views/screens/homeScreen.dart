@@ -1,5 +1,4 @@
 import 'package:expense_sheet/views/widgets/chart.dart';
-import 'package:expense_sheet/views/widgets/newTransaction.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_sheet/utils/colors.dart';
 import 'package:expense_sheet/views/widgets/transactionList.dart';
@@ -9,12 +8,6 @@ import 'package:expense_sheet/controllers/transactionController.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final transactions = Get.put(TransactionController());
-  void startNewTransaction(BuildContext ctx){
-    showModalBottomSheet(context: ctx, builder: (_){
-      return const NewTransaction();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,13 +16,14 @@ class HomePage extends StatelessWidget {
         backgroundColor: UiColors.appBarClr,
         actions: [
           IconButton(onPressed: (){
-            startNewTransaction(context);
+            transactions.startNewTransaction();
           }, icon: const Icon(Icons.add))
         ],),
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children:  [
+              const SizedBox(height: 10,),
+              const Text("Last Week Expenses",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
                 Chart(),
                TransactionList(),
             ],
@@ -38,7 +32,7 @@ class HomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           backgroundColor: UiColors.floatingBtnClr,
           child: const Icon(Icons.add),
-          onPressed: (){startNewTransaction(context);},
+          onPressed: (){transactions.startNewTransaction();},
         ),
       ),
     );
