@@ -22,8 +22,10 @@ class HomePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children:  [
-              const SizedBox(height: 10,),
-              const Text("Last Week Expenses",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
+             const Padding(
+                padding:  EdgeInsets.all(10.0),
+                child: Text("Last Week Expenses",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
+              ),
                 Chart(),
                TransactionList(),
             ],

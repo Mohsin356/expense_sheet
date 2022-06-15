@@ -13,9 +13,12 @@ class TransactionController extends GetxController{
     super.onInit();
     transactionsList;
   }
-  addItems(String txTitle, double txAmount){
-    final newTx = Transaction(id: DateTime.now().toString(),title: txTitle,amount: txAmount,date: DateTime.now());
+  addItems(String txTitle, double txAmount, DateTime dateCurrent){
+    final newTx = Transaction(id: DateTime.now().toString(),title: txTitle,amount: txAmount,date: dateCurrent);
     transactionsList.add(newTx);
+  }
+  deleteItems(String id){
+  transactionsList.removeWhere((element) => element.id== id);
   }
   submitData(){
     if(amountController.text.isEmpty){
@@ -23,10 +26,11 @@ class TransactionController extends GetxController{
     }
     final enteredTitle= titleController.text;
     final enteredAmount =double.parse(amountController.text);
+    final enteredDate=selectedDate.value;
     if(enteredTitle.isEmpty || enteredAmount<=0){
       return;
     }
-    addItems(enteredTitle,enteredAmount);
+    addItems(enteredTitle,enteredAmount,enteredDate);
     titleController.clear();
     amountController.clear();
     Navigator.of(Get.context!).pop();
