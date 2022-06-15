@@ -7,7 +7,7 @@ class TransactionController extends GetxController{
   var transactionsList = <Transaction>[].obs;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  DateTime? date;
+  var selectedDate= DateTime.now().obs;
   @override
   onInit(){
     super.onInit();
@@ -18,6 +18,9 @@ class TransactionController extends GetxController{
     transactionsList.add(newTx);
   }
   submitData(){
+    if(amountController.text.isEmpty){
+      return;
+    }
     final enteredTitle= titleController.text;
     final enteredAmount =double.parse(amountController.text);
     if(enteredTitle.isEmpty || enteredAmount<=0){
@@ -29,22 +32,23 @@ class TransactionController extends GetxController{
     Navigator.of(Get.context!).pop();
   }
   startNewTransaction(){
-    showModalBottomSheet(context: Get.context!, builder: (_){
+    showModalBottomSheet(context: Get.context!,
+        isScrollControlled: true,
+        builder: (_){
       return const NewTransaction();
     });
   }
-  // presentDatePicker(){
-  //   DateTime selectedDate;
-  //   showDatePicker(context: Get.context!,
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime(2022),
-  //       lastDate: DateTime.now()
-  //   ).then((pickedDate){
-  //     if (pickedDate==null){
-  //       return;
-  //     }
-  //     selectedDate =pickedDate;
-  //   });
-  // }
+  presentDatePicker(){
+    showDatePicker(context: Get.context!,
+        initialDate: selectedDate.value,
+        firstDate: DateTime(2022),
+        lastDate: DateTime.now()
+    ).then((pickedDate){
+      if (pickedDate==null){
+        return;
+      }
+      selectedDate.value =pickedDate;
+    });
 
+  }
 }

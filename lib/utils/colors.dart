@@ -12,6 +12,7 @@ class UiColors{
   static const txtBtnClr = Colors.purple;
   static const priceBorderClr = Colors.purple;
   static const priceTxtXlr = Colors.purple;
+  static const boxBorderClr = Colors.purple;
   static const dateTxtXlr = Colors.grey;
   static const fillerClr = Colors.purple;
   static const emptyFillerClr = Color.fromRGBO(220, 220, 220, 1);
