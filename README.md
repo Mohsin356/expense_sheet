@@ -11,4 +11,5 @@ a large amount.
 
 ## Demo of the Project
 
-![screen-20220616-163511 (3)](https://user-images.githubusercontent.com/101866366/174067195-598a9072-9aef-48d9-bfa7-8e1f88f7c5cf.gif)
+![screen-20220616-180045](https://user-images.githubusercontent.com/101866366/174076301-87d34f94-c079-4d55-82f4-12ca0cb3f9c6.gif)
+
