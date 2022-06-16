@@ -38,15 +38,19 @@ class Chart extends StatelessWidget {
                                 color: UiColors.emptyFillerClr,
                                 borderRadius: BorderRadius.circular(10),
                               ),),
-                            FractionallySizedBox(
-                              heightFactor: data['spending'] == 0 ? 0 :(data['amount'] as double)/(data['spending']as double),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: UiColors.fillerClr,
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: FractionallySizedBox(
+                                heightFactor: data['spending'] == 0 ? 0 :(data['amount'] as double)/(data['spending']as double),
+                                child: Container(
+                                  alignment: Alignment.bottomRight,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: UiColors.fillerClr,
+                                  ),
                                 ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
