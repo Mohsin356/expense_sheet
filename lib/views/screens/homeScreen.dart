@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text('Expense Planner'),
+        appBar: AppBar(title: const Text('Expense Tracker'),
         backgroundColor: UiColors.appBarClr,
         actions: [
           IconButton(onPressed: (){

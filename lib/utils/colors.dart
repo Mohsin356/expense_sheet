@@ -9,7 +9,7 @@ class UiColors{
   static const circleAvatarBorder = Colors.purple;
   static const btnClr = Colors.purple;
   static const cursorClr = Colors.purple;
-  static const deleteIconClr = Colors.red;
+  static const deleteIconClr = Color(0xffec4176);
   static const txtBtnClr = Colors.purple;
   static const priceBorderClr = Colors.purple;
   static const priceTxtXlr = Colors.purple;
