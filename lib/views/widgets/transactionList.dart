@@ -10,7 +10,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => transaction.transactionsList.isEmpty ? Column(
       children: [
-        const Text("No Transactions Added Yet",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
+        const Text("No Expenses Added Yet",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
         const SizedBox(height: 15,),
         SizedBox(
             height: 200,

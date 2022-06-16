@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             children:  [
              const Padding(
                 padding:  EdgeInsets.all(10.0),
-                child: Text("Last Week Expenses",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
+                child: Text("Expenses Chart",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: UiColors.headingTxtClr)),
               ),
                 Chart(),
                TransactionList(),
