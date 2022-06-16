@@ -1,16 +1,14 @@
-# expense_sheet
+# Expense Tracker
 
-A new Flutter project.
+An android app developed through flutter using GetX state management. The app keeps track of the expenses you have made. 
+In this app, User can:
+  1. Add new Expense. 
+  2. Delete added Expense. 
+  3. View overall expenses in a chart.
 
-## Getting Started
+This chart feature allows its users to find out on which day expenses have been made in
+a large amount.
 
-This project is a starting point for a Flutter application.
+## Demo of the Project
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![screen-20220616-163511 (3)](https://user-images.githubusercontent.com/101866366/174067195-598a9072-9aef-48d9-bfa7-8e1f88f7c5cf.gif)
